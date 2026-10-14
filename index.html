@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monk Mode Studios — Strategic Content With Intention</title>
-    
+
     <style>
         /* =======================================================
            1. FONTS & GLOBAL VARIABLES
            ======================================================= */
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:wght@400;700&display=swap');
-        
+
         @font-face {
             font-family: 'Google Sans';
             src: local('Google Sans'), url('https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
             font-weight: 200 400;
         }
+
         @font-face {
             font-family: 'Google Sans';
             src: local('Google Sans Medium'), url('https://fonts.gstatic.com/s/productsans/v5/hYBgxl27V7Zt9W6s4aG2Mwrv-8aZJ0p4f2xN_5qE9eQ.woff2') format('woff2');
@@ -29,7 +31,6 @@
             --text-muted: #737373;
             --bg-surface: #121212;
             --border-line: rgba(255, 255, 255, 0.05);
-
             --font-sans: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-mono: 'Space Mono', monospace;
@@ -38,32 +39,32 @@
         /* =======================================================
            2. RESET & BASE STYLES
            ======================================================= */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: clip !important;
+            overflow-y: visible !important;
+        }
+
         html {
             scroll-behavior: smooth;
-            overflow-x: clip;
         }
-        
+
         body {
             background-color: var(--bg-matte);
             color: var(--text-offwhite);
             font-family: var(--font-sans);
-            overflow-x: clip;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            width: 100%;
             min-height: 100vh;
-        }
-
-        @supports not (overflow-x: clip) {
-            html, body {
-                overflow-x: hidden;
-            }
         }
 
         a {
@@ -75,13 +76,19 @@
             list-style: none;
         }
 
-        img, video {
+        img,
+        video {
             max-width: 100%;
             display: block;
         }
 
         @media (pointer: fine) {
-            body, a, button, .marquee-track, .review-page {
+
+            body,
+            a,
+            button,
+            .marquee-track,
+            .review-page {
                 cursor: none !important;
             }
         }
@@ -94,10 +101,19 @@
             transform: translateY(30px);
             animation: fadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.25s; }
-        .delay-3 { animation-delay: 0.4s; }
-        
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.25s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.4s;
+        }
+
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -110,6 +126,7 @@
             transform: translateY(30px);
             transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
@@ -132,20 +149,12 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
         }
+
         .glass-cursor.hovering {
             width: 60px;
             height: 60px;
             background: rgba(18, 235, 51, 0.05);
             border-color: rgba(245, 245, 243, 0.5);
-        }
-
-        @media (pointer: coarse), (max-width: 768px) {
-            .glass-cursor {
-                display: none !important;
-            }
-            body, a, button, .marquee-track, .review-page {
-                cursor: auto !important;
-            }
         }
 
         .ambient-bg {
@@ -162,9 +171,15 @@
             z-index: -1;
             animation: slowSpin 120s linear infinite;
         }
+
         @keyframes slowSpin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         /* =======================================================
@@ -178,12 +193,13 @@
         }
 
         .section-spacing {
-            padding: clamp(60px, 8vw, 120px) 0;
+            padding-top: clamp(60px, 8vw, 120px);
+            padding-bottom: clamp(60px, 8vw, 120px);
             border-top: 1px solid var(--border-line);
         }
 
         .bg-surface {
-            background-color: rgba(18, 18, 18, 0.5); 
+            background-color: rgba(18, 18, 18, 0.5);
         }
 
         .text-accent {
@@ -205,13 +221,30 @@
             color: var(--text-muted);
         }
 
-        .mb-16 { margin-bottom: 16px; }
-        .mb-24 { margin-bottom: 24px; }
-        .mb-32 { margin-bottom: 32px; }
-        .mb-40 { margin-bottom: 40px; }
-        .mt-16 { margin-top: 16px; }
+        /* Spacing utility classes */
+        .mb-16 {
+            margin-bottom: 16px;
+        }
 
-        /* Navigation */
+        .mb-24 {
+            margin-bottom: 24px;
+        }
+
+        .mb-32 {
+            margin-bottom: 32px;
+        }
+
+        .mb-40 {
+            margin-bottom: 40px;
+        }
+
+        .mt-16 {
+            margin-top: 16px;
+        }
+
+        /* =======================================================
+           5. NAVIGATION
+           ======================================================= */
         .navbar {
             position: fixed;
             top: 0;
@@ -237,7 +270,7 @@
         }
 
         .nav-logo .logo-image {
-            height: clamp(28px, 3.5vw, 35px); 
+            height: clamp(28px, 3.5vw, 35px);
             width: auto;
             object-fit: contain;
         }
@@ -251,6 +284,7 @@
             color: rgba(244, 244, 240, 0.65);
             transition: color 0.3s;
         }
+
         .nav-links a:hover {
             color: var(--text-offwhite);
         }
@@ -268,6 +302,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .btn-outline:hover {
             border-color: var(--accent-lime);
             color: var(--accent-lime);
@@ -289,38 +324,39 @@
             text-align: center;
             max-width: 100%;
         }
+
         .btn-primary:hover {
             background-color: var(--accent-lime);
             color: var(--bg-matte);
         }
 
         /* =======================================================
-           5. HERO SECTION
+           6. HERO SECTION
            ======================================================= */
         .hero,
         .hero-section {
-            min-height: 100vh;
             min-height: 100svh;
-            min-height: 100dvh;
             height: auto;
             overflow: visible;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-top: clamp(120px, 15vh, 160px);
-            padding-bottom: clamp(40px, 6vh, 60px);
+            padding-top: 130px;
+            padding-bottom: 60px;
             position: relative;
             z-index: 10;
         }
 
+        /* Fluid hero heading — no inline font-size ever needed */
         .hero-title {
-            font-size: clamp(2.35rem, 6.5vw, 6.25rem);
+            font-size: clamp(2.4rem, 7vw, 6rem);
             font-weight: 500;
             line-height: 1.05;
             letter-spacing: -0.065em;
-            margin-bottom: clamp(36px, 6vh, 80px);
-            max-width: 1020px;
+            margin-bottom: clamp(24px, 5vw, 60px);
+            max-width: 1040px;
             word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .hero-bottom-grid {
@@ -334,7 +370,7 @@
         .hero-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: clamp(24px, 3vw, 40px);
+            column-gap: clamp(20px, 3vw, 40px);
             row-gap: 10px;
             max-width: 480px;
             width: 100%;
@@ -348,15 +384,15 @@
         }
 
         .hero-desc {
-            font-size: clamp(1.05rem, 1.45vw, 1.35rem);        
-            font-weight: 400;       
-            line-height: 1.5;       
+            font-size: clamp(1rem, 1.45vw, 1.35rem);
+            font-weight: 400;
+            line-height: 1.5;
             letter-spacing: -0.02em;
-            color: rgba(244, 244, 240, 0.9); 
+            color: rgba(244, 244, 240, 0.9);
         }
 
         /* =======================================================
-           6. THE PROBLEM / SPLIT SECTION
+           7. THE PROBLEM / SPLIT SECTION
            ======================================================= */
         .split-section {
             display: grid;
@@ -364,28 +400,31 @@
             gap: clamp(40px, 6vw, 80px);
         }
 
+        /* Unified heading class — replaces ALL inline font-size overrides */
         .split-title,
-        .section-heading {
-            font-size: clamp(2rem, 4.2vw, 3.25rem);
+        .section-heading,
+        .partnership-title {
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 500;
             line-height: 1.1;
             letter-spacing: -0.055em;
             word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .split-text p {
-            font-size: clamp(1rem, 1.35vw, 1.25rem);        
-            font-weight: 400;       
-            line-height: 1.55;       
+            font-size: clamp(1rem, 1.35vw, 1.25rem);
+            font-weight: 400;
+            line-height: 1.55;
             letter-spacing: -0.015em;
-            color: rgba(244, 244, 240, 0.9); 
-            margin-bottom: 28px;
+            color: rgba(244, 244, 240, 0.9);
+            margin-bottom: 24px;
         }
 
         .split-lead {
-            font-size: clamp(1.2rem, 1.75vw, 1.5rem) !important;
+            font-size: clamp(1.15rem, 1.75vw, 1.45rem) !important;
             color: var(--text-offwhite) !important;
-            line-height: 1.4 !important;
+            line-height: 1.45 !important;
         }
 
         .split-body {
@@ -393,10 +432,10 @@
         }
 
         /* =======================================================
-           7. PHILOSOPHY SECTION
+           8. PHILOSOPHY SECTION
            ======================================================= */
         .philosophy-container {
-            padding: clamp(60px, 8vw, 120px) clamp(24px, 4vw, 40px) !important;
+            padding: clamp(60px, 8vw, 120px) clamp(24px, 4vw, 40px);
             border-radius: clamp(24px, 3vw, 40px);
         }
 
@@ -411,7 +450,7 @@
             line-height: 1.2;
             margin-top: clamp(28px, 4vh, 48px);
         }
-        
+
         .principles-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -419,32 +458,34 @@
         }
 
         .principle-title {
-            font-size: clamp(1.15rem, 1.4vw, 1.3rem);
-            margin-bottom: 14px;
+            font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+            margin-bottom: 12px;
             display: flex;
             flex-direction: column;
             gap: 6px;
             transition: color 0.3s;
         }
+
         .principle-item:hover .principle-title {
             color: var(--accent-lime);
         }
 
         .principle-desc {
-            font-size: clamp(0.95rem, 1.15vw, 1.125rem);        
-            font-weight: 400;       
+            font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+            font-weight: 400;
             line-height: 1.55;
             letter-spacing: -0.01em;
             color: rgba(244, 244, 240, 0.75);
         }
 
         /* =======================================================
-           8. HORIZONTAL VIDEO REEL
+           9. WORK / VIDEO REEL SECTION
            ======================================================= */
         .work-section {
             padding-bottom: 60px;
             overflow: hidden;
             width: 100%;
+            border-top: 1px solid var(--border-line);
         }
 
         .work-header {
@@ -452,12 +493,12 @@
             margin-bottom: clamp(36px, 5vw, 60px);
         }
 
+        /* Key fix: no 100vw or negative margin — use 100% + overflow:hidden on parent */
         .reel-wrapper {
             width: 100%;
-            max-width: 100%;
+            overflow: hidden;
             padding: 24px 0 40px;
             position: relative;
-            overflow: hidden;
         }
 
         .marquee-track {
@@ -473,8 +514,13 @@
         }
 
         @keyframes autoScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 12px)); } 
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 12px));
+            }
         }
 
         .video-card {
@@ -511,7 +557,7 @@
             left: 0;
             width: 100%;
             padding: 40px 24px 24px;
-            background: linear-gradient(to top, rgba(10,10,10,0.95), transparent);
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.95), transparent);
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -534,7 +580,7 @@
         }
 
         /* =======================================================
-           9. REVIEWS / TESTIMONIALS SLIDER
+           10. TESTIMONIALS SLIDER
            ======================================================= */
         .reviews-container {
             position: relative;
@@ -571,7 +617,7 @@
 
         .review-quote {
             font-family: var(--font-sans);
-            font-size: clamp(1.4rem, 3.2vw, 2.85rem);
+            font-size: clamp(1.4rem, 3.5vw, 2.8rem);
             font-weight: 500;
             line-height: 1.2;
             letter-spacing: -0.035em;
@@ -652,37 +698,43 @@
         }
 
         /* =======================================================
-           10. HORIZONTAL SCROLL PROCESS / FRAMEWORK SECTION
+           11. PROCESS / FRAMEWORK SECTION (Horizontal Scroll)
            ======================================================= */
         .process-section {
             position: relative;
+            height: 260vh;
             background-color: var(--bg-matte);
-            height: 300vh;
             border-top: 1px solid var(--border-line);
         }
 
+        /* Strict height:100vh so position:sticky locks properly */
         .process-sticky-container {
             position: sticky;
             top: 0;
             height: 100vh;
-            height: 100svh;
             max-height: 100vh;
             width: 100%;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: clamp(20px, 3.2vh, 48px) 0;
+            justify-content: center;
+            padding-top: 80px;
+            padding-bottom: 24px;
             box-sizing: border-box;
         }
 
         .process-header {
-            padding: 0 clamp(24px, 4.5vw, 60px);
-            margin-bottom: clamp(16px, 2.5vh, 40px);
+            padding: 0 60px;
+            margin-bottom: clamp(24px, 4vh, 48px);
+        }
+
+        .process-header p {
+            font-size: clamp(28px, 3.5vw, 48px) !important;
+            line-height: 1.15;
         }
 
         .process-headline {
-            font-size: clamp(1.65rem, 3.2vw, 3.25rem);
+            font-size: clamp(28px, 3.5vw, 48px) !important;
             font-weight: 400;
             line-height: 1.15;
             letter-spacing: -0.05em;
@@ -692,22 +744,23 @@
 
         .process-track {
             display: flex;
-            gap: clamp(24px, 2.8vw, 40px);
-            padding: 0 clamp(24px, 4.5vw, 60px);
+            gap: 32px;
+            padding: 0 60px;
             width: max-content;
             will-change: transform;
-            align-items: stretch;
+            align-items: flex-start;
         }
 
         .phase-card {
-            width: clamp(270px, 24vw, 360px);
+            width: 340px;
+            flex-shrink: 0;
+            padding: 28px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-line);
             display: flex;
             flex-direction: column;
-            gap: clamp(8px, 1.4vh, 16px);
-            background: rgba(18, 18, 18, 0.45);
-            border: 1px solid var(--border-line);
-            border-radius: 20px;
-            padding: clamp(20px, 2.2vh, 28px);
+            gap: 14px;
             transition: border-color 0.3s ease;
         }
 
@@ -724,7 +777,7 @@
         }
 
         .phase-title {
-            font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+            font-size: clamp(1.1rem, 1.5vw, 1.45rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -747,8 +800,8 @@
         }
 
         .process-footer {
-            margin-top: clamp(16px, 2.5vh, 40px);
-            padding: clamp(12px, 1.8vh, 24px) clamp(24px, 4.5vw, 60px) 0;
+            margin-top: clamp(24px, 4vh, 48px);
+            padding: 20px 60px 0;
             border-top: 1px solid var(--border-line);
             display: flex;
             justify-content: center;
@@ -764,38 +817,12 @@
             text-align: center;
         }
 
-        /* Compact height adjustment for laptops & small desktop viewports */
-        @media (max-height: 820px) and (min-width: 769px) {
-            .process-sticky-container {
-                padding: 16px 0;
-                justify-content: space-evenly;
-            }
-            .process-header {
-                margin-bottom: 12px;
-            }
-            .process-headline {
-                font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-            }
-            .phase-card {
-                padding: 16px 20px;
-                gap: 8px;
-            }
-            .phase-desc {
-                font-size: 0.88rem;
-                line-height: 1.45;
-            }
-            .process-footer {
-                margin-top: 12px;
-                padding-top: 10px;
-            }
-        }
-
         /* =======================================================
-           11. PARTNERSHIP SECTION
+           12. PARTNERSHIP SECTION
            ======================================================= */
         .partnership-grid {
             display: grid;
-            grid-template-columns: 1fr 1.25fr; 
+            grid-template-columns: 1fr 1.25fr;
             gap: clamp(40px, 6vw, 80px);
             align-items: start;
             width: 100%;
@@ -806,14 +833,7 @@
             flex-direction: column;
         }
 
-        .partnership-title {
-            font-size: clamp(2rem, 3.8vw, 3.25rem); 
-            font-weight: 500;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            color: #ffffff;
-            margin: 0;
-        }
+        /* .partnership-title sizing is now inside .split-title unified rule above */
 
         .partnership-right {
             display: flex;
@@ -822,7 +842,7 @@
         }
 
         .partnership-intro {
-            font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+            font-size: clamp(1.1rem, 1.7vw, 1.5rem);
             font-weight: 500;
             letter-spacing: -0.02em;
             color: #ffffff;
@@ -832,28 +852,29 @@
         .partnership-list {
             display: flex;
             flex-direction: column;
-            gap: 18px; 
+            gap: 18px;
             margin-bottom: 40px;
         }
 
         .partnership-list-item {
-            font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+            font-size: clamp(0.95rem, 1.25vw, 1.1rem);
             font-weight: 400;
             letter-spacing: -0.01em;
             color: rgba(244, 244, 240, 0.65);
             display: flex;
             align-items: flex-start;
             gap: 16px;
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
         .partnership-list-item::before {
             content: '—';
             color: rgba(255, 255, 255, 0.35);
+            flex-shrink: 0;
         }
 
         .partnership-closing {
-            font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+            font-size: clamp(1rem, 1.45vw, 1.35rem);
             font-weight: 500;
             letter-spacing: -0.01em;
             display: flex;
@@ -871,7 +892,7 @@
         }
 
         /* =======================================================
-           12. FOUNDER NOTE SECTION (Light Background)
+           13. FOUNDER NOTE SECTION
            ======================================================= */
         .founder-section {
             background-color: var(--text-offwhite);
@@ -889,7 +910,7 @@
             font-size: clamp(2rem, 4.4vw, 3.5rem);
             font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.085em;
             margin-bottom: clamp(32px, 5vw, 56px);
             color: var(--bg-matte);
         }
@@ -945,23 +966,27 @@
         }
 
         /* =======================================================
-           13. FAQ SECTION
+           14. FAQ SECTION
            ======================================================= */
+        .faq-outer {
+            border-top: 1px solid var(--border-line);
+        }
+
         .faq-section {
             display: flex;
             flex-direction: row;
             background-color: var(--bg-matte);
             color: var(--text-offwhite);
-            padding: clamp(60px, 8vw, 120px) clamp(20px, 4vw, 40px); 
+            padding: clamp(60px, 8vw, 120px) clamp(20px, 4vw, 40px);
             font-family: var(--font-sans);
-            max-width: 1400px; 
+            max-width: 1400px;
             margin: 0 auto;
             gap: clamp(40px, 6vw, 80px);
         }
 
         .faq-sidebar {
             flex: 1;
-            min-width: 240px;
+            min-width: 220px;
         }
 
         .faq-sidebar h2 {
@@ -971,9 +996,9 @@
             color: var(--text-muted);
             text-transform: uppercase;
             font-weight: 600;
-            margin-top: 24px; 
+            margin-top: 24px;
             position: sticky;
-            top: 100px; 
+            top: 100px;
         }
 
         .faq-accordion {
@@ -983,6 +1008,7 @@
         .faq-item {
             border-top: 1px solid var(--border-line);
         }
+
         .faq-item:last-child {
             border-bottom: 1px solid var(--border-line);
         }
@@ -993,11 +1019,11 @@
             border: none;
             color: var(--text-offwhite);
             font-family: var(--font-sans);
-            font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+            font-size: clamp(0.95rem, 1.25vw, 1.1rem);
             font-weight: 500;
             letter-spacing: 0.02em;
             text-align: left;
-            padding: clamp(24px, 3vh, 35px) 0; 
+            padding: clamp(20px, 3vh, 35px) 0;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -1028,7 +1054,7 @@
         .faq-answer p {
             color: var(--text-muted);
             font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-            line-height: 1.7; 
+            line-height: 1.7;
             margin: 0;
             padding-bottom: 30px;
             padding-right: 20px;
@@ -1044,7 +1070,7 @@
         }
 
         /* =======================================================
-           14. FINAL CTA & FOOTER
+           15. FINAL CTA & FOOTER
            ======================================================= */
         .cta-section {
             text-align: center;
@@ -1061,21 +1087,21 @@
             margin-bottom: 28px;
         }
 
+        /* CTA heading uses same fluid scale — no inline override needed */
         .cta-heading {
-            font-size: clamp(2.2rem, 5.5vw, 5.5rem);
+            font-size: clamp(2.4rem, 7vw, 6rem);
             font-weight: 500;
             line-height: 1.05;
-            letter-spacing: -0.06em;
+            letter-spacing: -0.065em;
             margin-bottom: 28px;
-            margin-left: auto;
-            margin-right: auto;
+            word-wrap: break-word;
         }
 
         .cta-desc {
             margin-bottom: clamp(36px, 5vw, 60px);
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
-            max-width: 720px;
         }
 
         .footer-section {
@@ -1146,82 +1172,108 @@
         }
 
         /* =======================================================
-           15. RESPONSIVE MEDIA QUERIES (CLEAN & NON-NESTED)
+           16. RESPONSIVE — 1024px (Tablet / Small Desktop)
            ======================================================= */
-        @media (max-width: 1024px) {
+        @media screen and (max-width: 1024px) {
             .hero-bottom-grid {
                 gap: 32px;
             }
+
             .philosophy-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
+
             .partnership-grid {
                 grid-template-columns: 1fr;
                 gap: 48px;
             }
+
             .footer-grid {
                 grid-template-columns: 1.5fr 1fr 1fr;
             }
         }
 
-        @media (max-width: 768px) {
-            /* Navbar */
+        /* =======================================================
+           17. RESPONSIVE — 768px (Mobile — ONE consolidated block)
+           ======================================================= */
+        @media screen and (max-width: 768px) {
+
+            /* Cursor */
+            .glass-cursor {
+                display: none !important;
+            }
+
+            body,
+            a,
+            button,
+            .marquee-track,
+            .review-page {
+                cursor: auto !important;
+            }
+
+            /* Nav */
             .navbar {
-                padding: 16px 0;
+                padding: 14px 0;
             }
+
             .nav-links {
-                display: none;
+                display: none !important;
             }
+
             .btn-outline {
-                display: none;
+                display: none !important;
             }
 
-            /* Container & Global Spacing */
+            /* Global spacing */
             .container {
-                padding: 0 20px;
-            }
-            .section-spacing {
-                padding: 70px 0;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
             }
 
-            /* Hero Section Fix */
+            .section-spacing {
+                padding-top: 64px !important;
+                padding-bottom: 64px !important;
+            }
+
+            /* ── Hero ── */
             .hero,
             .hero-section {
                 padding-top: 110px;
                 padding-bottom: 48px;
-                min-height: 100svh;
-                min-height: 100dvh;
+                min-height: auto;
                 height: auto;
                 overflow: visible;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
+                gap: 40px;
             }
 
             .hero-title {
-                font-size: clamp(2.1rem, 9vw, 2.9rem);
+                font-size: clamp(2.1rem, 9vw, 3rem);
                 line-height: 1.1;
                 letter-spacing: -0.04em;
-                margin-bottom: 28px;
+                margin-bottom: 0;
             }
 
             .hero-bottom-grid {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 28px;
+                gap: 24px;
                 margin-top: 0;
             }
 
             .hero-list {
-                column-gap: 20px;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 16px;
                 row-gap: 8px;
                 max-width: 100%;
             }
 
             .hero-cta-box {
                 max-width: 100%;
-                gap: 24px;
+                gap: 20px;
             }
 
             .hero-desc {
@@ -1229,157 +1281,230 @@
                 line-height: 1.55;
             }
 
-            /* Split Section */
+            /* ── Grids → single column ── */
             .split-section {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 28px;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .split-title,
+            .section-heading,
+            .partnership-title {
+                font-size: clamp(1.85rem, 7.5vw, 2.6rem) !important;
+                line-height: 1.15 !important;
+                letter-spacing: -0.04em !important;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr !important;
                 gap: 32px;
             }
 
-            /* Philosophy Section */
+            .principles-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px;
+            }
+
+            .partnership-grid {
+                grid-template-columns: 1fr !important;
+                gap: 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 32px;
+            }
+
+            /* Philosophy container */
             .philosophy-container {
                 padding: 48px 20px !important;
                 border-radius: 24px;
             }
-            .philosophy-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .principles-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
+
             .philosophy-accent {
-                margin-top: 24px;
+                margin-top: 20px;
             }
 
-            /* Video Reel */
+            /* Video reel */
             .video-card {
                 flex: 0 0 clamp(260px, 76vw, 300px);
                 height: 480px;
                 border-radius: 20px;
             }
 
-            /* Testimonials Slider */
+            /* Testimonials */
             .reviews-container {
-                padding: 36px 20px;
+                padding: 32px 20px 28px !important;
                 border-radius: 24px;
             }
+
             .review-quote {
-                font-size: clamp(1.25rem, 5.2vw, 1.75rem);
-                margin-bottom: 48px;
+                font-size: clamp(1.15rem, 5vw, 1.55rem);
+                line-height: 1.35;
+                margin-bottom: 36px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
+
+            .review-bottom-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            .review-author-info {
+                max-width: calc(100% - 110px);
+            }
+
             .review-pagination {
-                bottom: 24px;
+                bottom: 28px;
                 right: 20px;
-                gap: 16px;
+                gap: 12px;
             }
+
             .review-author-role {
                 max-width: 180px;
             }
 
-            /* Process Section (Stacked on Mobile) */
+            /* ── Process section: FULLY STACKED, no sticky, no horizontal scroll ── */
             .process-section {
                 height: auto !important;
-                padding: 70px 0 !important;
+                min-height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                padding: 64px 0 !important;
             }
+
             .process-sticky-container {
-                position: relative !important;
+                position: static !important;
                 height: auto !important;
                 min-height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
                 display: block !important;
                 padding: 0 !important;
-                overflow: visible !important;
+                top: auto !important;
             }
+
             .process-header {
-                margin-bottom: 32px !important;
+                margin-bottom: 28px !important;
                 padding: 0 20px !important;
             }
+
+            .process-header p,
             .process-headline {
-                font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
+                font-size: clamp(1.55rem, 6.5vw, 2.2rem) !important;
                 line-height: 1.2 !important;
             }
+
             .process-track {
+                display: flex !important;
                 flex-direction: column !important;
                 width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                max-height: none !important;
                 transform: none !important;
                 padding: 0 20px !important;
-                gap: 20px !important;
+                gap: 16px !important;
+                box-sizing: border-box !important;
+                align-items: stretch !important;
             }
+
             .phase-card {
                 width: 100% !important;
                 max-width: 100% !important;
-                padding: 24px !important;
+                height: auto !important;
+                max-height: none !important;
+                padding: 22px 20px !important;
+                box-sizing: border-box !important;
+                flex-shrink: 0 !important;
             }
+
             .phase-card.spacer-card {
                 display: none !important;
             }
+
             .process-footer {
-                margin-top: 36px !important;
-                padding: 20px 20px 0 !important;
-            }
-            .process-footer-text {
-                word-spacing: 6px !important;
-                letter-spacing: 0.1em !important;
-                font-size: 10px !important;
+                margin-top: 32px !important;
+                padding: 18px 20px 0 !important;
+                display: flex !important;
+                justify-content: center !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
-            /* Partnership Section */
-            .partnership-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
+            .process-footer-text {
+                word-spacing: 4px !important;
+                letter-spacing: 0.08em !important;
+                font-size: 10px !important;
+                line-height: 1.6 !important;
+                text-align: center !important;
             }
+
+            /* Partnership */
             .partnership-right {
                 padding-top: 0;
             }
+
             .partnership-list {
-                margin-bottom: 28px;
+                margin-bottom: 24px;
             }
 
-            /* Founder Section */
+            /* Founder */
             .founder-section {
                 padding: 60px 20px;
             }
 
-            /* FAQ Section */
+            /* FAQ */
             .faq-section {
-                flex-direction: column;
-                gap: 32px;
-                padding: 60px 20px;
-            }
-            .faq-sidebar h2 {
-                position: static;
-                margin-top: 0;
-            }
-            .faq-question {
-                font-size: 16px;
-                padding: 20px 0;
+                flex-direction: column !important;
+                gap: 28px;
+                padding: 56px 20px;
             }
 
-            /* Footer */
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
+            .faq-sidebar h2 {
+                position: static !important;
+                margin-top: 0 !important;
             }
+
+            .faq-question {
+                font-size: 15px !important;
+                padding: 18px 0 !important;
+            }
+
+            /* Footer bottom */
             .footer-bottom {
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
                 align-items: flex-start;
             }
         }
 
-        @media (max-width: 480px) {
+        /* =======================================================
+           18. RESPONSIVE — 480px (Small phones)
+           ======================================================= */
+        @media screen and (max-width: 480px) {
             .hero-title {
-                font-size: clamp(1.9rem, 8.5vw, 2.4rem);
+                font-size: clamp(1.9rem, 9vw, 2.6rem);
             }
+
             .hero-list {
                 grid-template-columns: 1fr;
                 row-gap: 6px;
             }
+
             .btn-primary {
                 padding: 12px 24px;
                 font-size: 11px;
                 width: 100%;
+                justify-content: center;
             }
+
             .video-card {
                 flex: 0 0 82vw;
                 height: 440px;
@@ -1387,28 +1512,30 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Custom Cursor -->
     <div class="glass-cursor" id="cursor"></div>
 
     <!-- Ambient SVG Background -->
-    <svg class="ambient-bg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 0C50 0 65 35 100 50C100 50 65 65 50 100C50 100 35 65 0 50C0 50 35 35 50 0Z" stroke="url(#paint0_linear)" stroke-width="0.2"/>
-        <path d="M15 15C15 15 40 35 85 85C85 85 60 65 15 15Z" stroke="url(#paint1_linear)" stroke-width="0.2"/>
-        <path d="M85 15C85 15 60 35 15 85C15 85 40 65 85 15Z" stroke="url(#paint2_linear)" stroke-width="0.2"/>
+    <svg class="ambient-bg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M50 0C50 0 65 35 100 50C100 50 65 65 50 100C50 100 35 65 0 50C0 50 35 35 50 0Z"
+            stroke="url(#paint0_linear)" stroke-width="0.2" />
+        <path d="M15 15C15 15 40 35 85 85C85 85 60 65 15 15Z" stroke="url(#paint1_linear)" stroke-width="0.2" />
+        <path d="M85 15C85 15 60 35 15 85C15 85 40 65 85 15Z" stroke="url(#paint2_linear)" stroke-width="0.2" />
         <defs>
             <linearGradient id="paint0_linear" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#12eb33"/>
-                <stop offset="1" stop-color="#333333" stop-opacity="0"/>
+                <stop stop-color="#12eb33" />
+                <stop offset="1" stop-color="#333333" stop-opacity="0" />
             </linearGradient>
             <linearGradient id="paint1_linear" x1="15" y1="15" x2="85" y2="85" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#12eb33" stop-opacity="0.5"/>
-                <stop offset="1" stop-color="#333333" stop-opacity="0"/>
+                <stop stop-color="#12eb33" stop-opacity="0.5" />
+                <stop offset="1" stop-color="#333333" stop-opacity="0" />
             </linearGradient>
             <linearGradient id="paint2_linear" x1="85" y1="15" x2="15" y2="85" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#12eb33" stop-opacity="0.5"/>
-                <stop offset="1" stop-color="#333333" stop-opacity="0"/>
+                <stop stop-color="#12eb33" stop-opacity="0.5" />
+                <stop offset="1" stop-color="#333333" stop-opacity="0" />
             </linearGradient>
         </defs>
     </svg>
@@ -1419,7 +1546,7 @@
             <a href="#" class="nav-logo">
                 <img src="logo.png" alt="Monk Mode Studios" class="logo-image">
             </a>
-            
+
             <div class="nav-links label-mono">
                 <a href="#work">Work</a>
                 <a href="#philosophy">Philosophy</a>
@@ -1431,8 +1558,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section hero container">
+    <!-- ===== HERO SECTION ===== -->
+    <!-- Both .hero and .hero-section present — CSS targets both equally -->
+    <section class="hero hero-section container">
         <h1 class="hero-title load-reveal delay-2">
             Stop making noise.<br>
             Start creating with <span class="text-accent">intention.</span>
@@ -1442,14 +1570,15 @@
             <div class="hero-list label-mono">
                 <p>Content Strategy</p>
                 <p>Platform Distribution</p>
-                <p>Hooks & Scripts</p>
+                <p>Hooks &amp; Scripts</p>
                 <p>Performance Review</p>
                 <p>Short-Form Video</p>
                 <p>Audience Learning</p>
-            </div>    
+            </div>
             <div class="hero-cta-box">
                 <p class="hero-desc">
-                    A complete growth-focused content system — strategy, scripting, production, and distribution — built to grow visibility, engagement and qualified leads.
+                    A complete growth-focused content system — strategy, scripting, production, and distribution — built
+                    to grow visibility, engagement and qualified leads.
                 </p>
                 <div>
                     <a href="#contact" class="btn-primary">Start A Project &nbsp;→</a>
@@ -1458,7 +1587,7 @@
         </div>
     </section>
 
-    <!-- The Problem Section -->
+    <!-- ===== THE PROBLEM SECTION ===== -->
     <section class="section-spacing container">
         <div class="split-section">
             <div class="reveal">
@@ -1468,16 +1597,23 @@
                 </h2>
             </div>
             <div class="split-text reveal">
-                <p class="split-lead">The internet doesn't need more content. <br>It needs content that knows exactly what it is trying to achieve.</p>
-                <p class="split-body">Businesses post because they feel they should. They follow trends without a clear position. They publish videos without a compelling message, a reason to trust, or a next step for the viewer.<br><br>
+                <!-- No inline margin-left: negative px — those are removed entirely -->
+                <p class="split-lead">The internet doesn't need more content.<br>It needs content that knows exactly
+                    what it is trying to achieve.</p>
+                <p class="split-body">Businesses post because they feel they should. They follow trends without a clear
+                    position. They publish videos without a compelling message, a reason to trust, or a next step for
+                    the viewer.<br><br>
                     The result?<br>
                     More activity. More effort. Not necessarily more business.<br><br>
-                    At Monk Mode Studios, we believe content should do more than fill a calendar. It should communicate your value, strengthen your positioning, earn attention and give the right people a reason to take action.</p>
+                    At Monk Mode Studios, we believe content should do more than fill a calendar. It should communicate
+                    your value, strengthen your positioning, earn attention and give the right people a reason to take
+                    action.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy Section -->
+    <!-- ===== PHILOSOPHY SECTION ===== -->
     <section id="philosophy" class="section-spacing container bg-surface philosophy-container">
         <div class="philosophy-grid">
             <div class="reveal">
@@ -1485,51 +1621,51 @@
                 <h2 class="split-title mb-32">The Principles Behind The Work.</h2>
                 <h4 class="text-accent philosophy-accent">Less Noise.<br>More Intention.</h4>
             </div>
-            
+
             <div class="principles-grid">
                 <div class="principle-item reveal">
                     <h3 class="principle-title">
-                        <span class="label-mono text-lime">01</span> 
+                        <span class="label-mono text-lime">01</span>
                         Intention Over Noise
                     </h3>
-                    <p class="principle-desc">Every piece of content needs a purpose. If it doesn't support positioning, build trust, educate the audience or encourage action, we question why it needs to exist.</p>
+                    <p class="principle-desc">Every piece of content needs a purpose. If it doesn't support positioning,
+                        build trust, educate the audience or encourage action, we question why it needs to exist.</p>
                 </div>
 
                 <div class="principle-item reveal">
                     <h3 class="principle-title">
-                        <span class="label-mono text-lime">02</span> 
+                        <span class="label-mono text-lime">02</span>
                         Positioning Before Production
                     </h3>
-                    <p class="principle-desc">Better editing cannot rescue an unclear message. Before creating, we work to understand what makes a business valuable, who it serves and why its audience should care.</p>
+                    <p class="principle-desc">Better editing cannot rescue an unclear message. Before creating, we work
+                        to understand what makes a business valuable, who it serves and why its audience should care.
+                    </p>
                 </div>
 
                 <div class="principle-item reveal">
                     <h3 class="principle-title">
-                        <span class="label-mono text-lime">03</span> 
+                        <span class="label-mono text-lime">03</span>
                         Strategy Before Volume
                     </h3>
-                    <p class="principle-desc">More posts aren't automatically better. We prioritize message quality, relevance and consistency over publishing content simply to hit a number.</p>
+                    <p class="principle-desc">More posts aren't automatically better. We prioritize message quality,
+                        relevance and consistency over publishing content simply to hit a number.</p>
                 </div>
 
                 <div class="principle-item reveal">
                     <h3 class="principle-title">
-                        <span class="label-mono text-lime">04</span> 
+                        <span class="label-mono text-lime">04</span>
                         Creativity With Commercial Intent
                     </h3>
-                    <p class="principle-desc">Creativity earns attention. Strategy gives that attention direction. We design content to support business objectives, not just aesthetic preferences.</p>
+                    <p class="principle-desc">Creativity earns attention. Strategy gives that attention direction. We
+                        design content to support business objectives, not just aesthetic preferences.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Auto-Scrolling Horizontal Video Reel Section -->
-    <section id="work" class="section-spacing container" style="padding-bottom: 60px;">
-        <div class="reveal" style="max-width: 800px; margin-bottom: 60px;">
-            <p class="label-mono" style="margin-bottom: 24px;">Selected Output</p>
-            <h2 class="split-title" style="font-size: 80px;">Proof of <span class="text-accent">Intention.</span></h2>
-            <p class="hero-desc" style="margin-top: 16px;">Scroll to explore recent executions and authentic performance metrics.</p>
-    <!-- Auto-Scrolling Horizontal Video Reel Section -->
-    <section id="work" class="section-spacing work-section">
+    <!-- ===== WORK / VIDEO REEL SECTION ===== -->
+    <!-- Single clean section — no duplicated markup, no inline styles -->
+    <section id="work" class="work-section" style="padding-top: 60px;">
         <div class="container reveal">
             <div class="work-header">
                 <p class="label-mono mb-24">Selected Output</p>
@@ -1540,7 +1676,7 @@
 
         <div class="reel-wrapper reveal">
             <div class="marquee-track">
-                
+
                 <!-- ====== ORIGINAL 8 CARDS ====== -->
                 <div class="video-card">
                     <video src="reel-1.mp4" class="reel-video" autoplay loop muted playsinline></video>
@@ -1589,7 +1725,7 @@
                         <span class="video-metric">Organic Reach Shift</span>
                     </div>
                 </div>
-                
+
                 <div class="video-card">
                     <video src="reel-7.mp4" class="reel-video" autoplay loop muted playsinline></video>
                     <div class="video-overlay">
@@ -1606,7 +1742,7 @@
                     </div>
                 </div>
 
-                <!-- ====== DUPLICATE 8 CARDS ====== -->
+                <!-- ====== DUPLICATE 8 CARDS (seamless loop) ====== -->
                 <div class="video-card">
                     <video src="reel-1.mp4" class="reel-video" autoplay loop muted playsinline></video>
                     <div class="video-overlay">
@@ -1654,7 +1790,7 @@
                         <span class="video-metric">Organic Reach Shift</span>
                     </div>
                 </div>
-                
+
                 <div class="video-card">
                     <video src="reel-7.mp4" class="reel-video" autoplay loop muted playsinline></video>
                     <div class="video-overlay">
@@ -1675,7 +1811,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS SLIDER SECTION -->
+    <!-- ===== TESTIMONIALS SLIDER ===== -->
     <section class="section-spacing container">
         <div class="reveal">
             <p class="label-mono mb-24">The Verdict</p>
@@ -1683,13 +1819,17 @@
         </div>
 
         <div class="reviews-container reveal">
-            <svg width="44" height="40" viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="review-quote-icon">
-                <path d="M16 0H0V16H8C8 24.836 2.836 30 0 30V40C13.255 40 20 29.255 20 16V0ZM44 0H28V16H36C36 24.836 30.836 30 28 30V40C41.255 40 48 29.255 48 16V0Z" fill="var(--accent-lime)"/>
+            <svg width="44" height="40" viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="review-quote-icon" aria-hidden="true">
+                <path
+                    d="M16 0H0V16H8C8 24.836 2.836 30 0 30V40C13.255 40 20 29.255 20 16V0ZM44 0H28V16H36C36 24.836 30.836 30 28 30V40C41.255 40 48 29.255 48 16V0Z"
+                    fill="var(--accent-lime)" />
             </svg>
 
             <div class="review-slides-wrapper">
                 <div class="review-slide active">
-                    <h3 class="review-quote">We needed more than just a video editor. They built a complete content system that actually brought in reservations, not just empty views.</h3>
+                    <h3 class="review-quote">We needed more than just a video editor. They built a complete content
+                        system that actually brought in reservations, not just empty views.</h3>
                     <div class="review-bottom-bar">
                         <div class="review-author-info">
                             <span class="review-author-name">Tatiana Kurteva</span>
@@ -1699,7 +1839,8 @@
                 </div>
 
                 <div class="review-slide">
-                    <h3 class="review-quote">They didn't just edit our videos. They refined our entire messaging strategy. The audience finally understands the true value of our traditional products.</h3>
+                    <h3 class="review-quote">They didn't just edit our videos. They refined our entire messaging
+                        strategy. The audience finally understands the true value of our traditional products.</h3>
                     <div class="review-bottom-bar">
                         <div class="review-author-info">
                             <span class="review-author-name">My Glow Theory</span>
@@ -1709,7 +1850,8 @@
                 </div>
 
                 <div class="review-slide">
-                    <h3 class="review-quote">They cut half the noise channels and doubled the actual return. It was a disciplined shift in strategy, and it was exactly right.</h3>
+                    <h3 class="review-quote">They cut half the noise channels and doubled the actual return. It was a
+                        disciplined shift in strategy, and it was exactly right.</h3>
                     <div class="review-bottom-bar">
                         <div class="review-author-info">
                             <span class="review-author-name">Avery Mitchell</span>
@@ -1719,7 +1861,8 @@
                 </div>
 
                 <div class="review-slide">
-                    <h3 class="review-quote">A rare combination of disciplined strategy and creative execution. Every piece of content they produce has a deliberate purpose for our brand.</h3>
+                    <h3 class="review-quote">A rare combination of disciplined strategy and creative execution. Every
+                        piece of content they produce has a deliberate purpose for our brand.</h3>
                     <div class="review-bottom-bar">
                         <div class="review-author-info">
                             <span class="review-author-name">Dena</span>
@@ -1738,25 +1881,27 @@
         </div>
     </section>
 
-    <!-- Framework Section -->
+    <!-- ===== FRAMEWORK / PROCESS SECTION ===== -->
     <section id="framework" class="process-section">
         <div class="process-sticky-container" id="sticky-container">
-            
+
             <div class="process-header">
-                <h2 class="process-headline">A deliberate process. <br>From first principles to published content.</h2>
+                <h2 class="process-headline">A deliberate process.<br>From first principles to published content.</h2>
             </div>
 
             <div class="process-track" id="scroll-track">
                 <div class="phase-card">
                     <span class="phase-label">Phase 01</span>
                     <h3 class="phase-title">Discover</h3>
-                    <p class="phase-desc">We learn about your business, audience, positioning, objectives and existing content performance.</p>
+                    <p class="phase-desc">We learn about your business, audience, positioning, objectives and existing
+                        content performance.</p>
                 </div>
 
                 <div class="phase-card">
                     <span class="phase-label">Phase 02</span>
                     <h3 class="phase-title">Define</h3>
-                    <p class="phase-desc">We establish the messaging direction, content pillars, creative approach and intended action for your audience.</p>
+                    <p class="phase-desc">We establish the messaging direction, content pillars, creative approach and
+                        intended action for your audience.</p>
                 </div>
 
                 <div class="phase-card">
@@ -1768,18 +1913,19 @@
                 <div class="phase-card">
                     <span class="phase-label">Phase 04</span>
                     <h3 class="phase-title">Create</h3>
-                    <p class="phase-desc">We turn the strategy into polished short-form content aligned with your brand and agreed deliverables.</p>
+                    <p class="phase-desc">We turn the strategy into polished short-form content aligned with your brand
+                        and agreed deliverables.</p>
                 </div>
 
                 <div class="phase-card">
                     <span class="phase-label">Phase 05</span>
                     <h3 class="phase-title">Review</h3>
-                    <p class="phase-desc">We evaluate available performance data, learn what resonates and refine the next cycle.</p>
+                    <p class="phase-desc">We evaluate available performance data, learn what resonates and refine the
+                        next cycle.</p>
                 </div>
-                
-                <div class="phase-card spacer-card" style="opacity: 0; pointer-events: none;"></div>
-            </div>
 
+                <!-- Invisible trailing spacer for scroll breathing room (hidden on mobile via CSS) -->
+            </div>
             <div class="process-footer">
                 <div class="process-footer-text">Understand. | Define. | Create. | Measure. | Refine.</div>
             </div>
@@ -1787,42 +1933,53 @@
         </div>
     </section>
 
-    <!-- Partnership Section -->
+    <!-- ===== PARTNERSHIP SECTION ===== -->
     <section class="section-spacing container">
         <div class="partnership-grid reveal">
             <div class="partnership-left">
-                <h2 class="partnership-title">Built for businesses that take growth <br><span class="text-lime">seriously.</span></h2>
+                <!-- No inline font-size — .partnership-title uses the unified clamp rule -->
+                <h2 class="partnership-title">Built for businesses that take growth<br><span
+                        class="text-lime">seriously.</span></h2>
             </div>
-            
+
             <div class="partnership-right">
                 <p class="partnership-intro">We work best with businesses that:</p>
-                
+
                 <div class="partnership-list">
-                    <div class="partnership-list-item">Have a clear service, product or expertise worth communicating.</div>
-                    <div class="partnership-list-item">Understand that content is a strategic investment, not just a posting obligation.</div>
+                    <div class="partnership-list-item">Have a clear service, product or expertise worth communicating.
+                    </div>
+                    <div class="partnership-list-item">Understand that content is a strategic investment, not just a
+                        posting obligation.</div>
                     <div class="partnership-list-item">Want to build credibility with a defined audience.</div>
-                    <div class="partnership-list-item">Are willing to collaborate on messaging, production and feedback.</div>
-                    <div class="partnership-list-item">Want to connect their content efforts to meaningful business outcomes.</div>
+                    <div class="partnership-list-item">Are willing to collaborate on messaging, production and feedback.
+                    </div>
+                    <div class="partnership-list-item">Want to connect their content efforts to meaningful business
+                        outcomes.</div>
                 </div>
 
                 <div class="partnership-closing">
                     <p class="partnership-closing-white">We don't believe every business needs more content.</p>
-                    <p class="partnership-closing-lime">We believe the right businesses need a clearer reason to create it.</p>
+                    <p class="partnership-closing-lime">We believe the right businesses need a clearer reason to create
+                        it.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Founder's Note Section -->
+    <!-- ===== FOUNDER'S NOTE SECTION ===== -->
     <section class="founder-section">
         <div class="founder-wrapper reveal">
             <h2 class="founder-title">Built on the belief that better thinking creates better work.</h2>
-            
+
             <div class="founder-body">
                 <p>Monk Mode Studios was built around a simple idea: meaningful creative work begins with clarity.</p>
-                <p>We believe the strongest content isn't created by following every trend or publishing without direction. It comes from understanding the business, respecting the audience and making deliberate creative decisions.</p>
-                <p>Our focus is on building a disciplined, strategy-led approach to short-form content—one that connects what a business says with what it wants its audience to understand and do.</p>
-                <p>We're building Monk Mode Studios with a commitment to thoughtful strategy, strong creative execution and honest measurement.</p>
+                <p>We believe the strongest content isn't created by following every trend or publishing without
+                    direction. It comes from understanding the business, respecting the audience and making deliberate
+                    creative decisions.</p>
+                <p>Our focus is on building a disciplined, strategy-led approach to short-form content—one that connects
+                    what a business says with what it wants its audience to understand and do.</p>
+                <p>We're building Monk Mode Studios with a commitment to thoughtful strategy, strong creative execution
+                    and honest measurement.</p>
             </div>
 
             <div class="founder-quote">
@@ -1833,92 +1990,107 @@
             <div class="founder-divider"></div>
 
             <div class="founder-author-name">Sudhagar Krishnan</div>
-            <div class="founder-author-role">Founder & Creative Director</div>
+            <div class="founder-author-role">Founder &amp; Creative Director</div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="faq-sidebar">
-            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+    <!-- ===== FAQ SECTION ===== -->
+    <div class="faq-outer">
+        <div class="faq-section">
+            <div class="faq-sidebar">
+                <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>WHAT DOES MONK MODE STUDIOS DO?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We develop strategic short-form content systems, including content strategy, hooks, scripts,
+                            video production, publishing direction and performance review.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>IS THIS JUST A VIDEO EDITING SERVICE?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Editing is one part of the process. We focus on the strategic thinking behind the
+                            content: what to communicate, why it matters to the audience and what action the content
+                            should encourage.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>CAN YOU GUARANTEE LEADS OR SALES?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We do not promise a fixed number of leads, customers or revenue without a reliable basis for
+                            doing so. We build content around clear business objectives, track relevant performance
+                            where possible and use the findings to improve future execution.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>DO YOU MANAGE PAID ADVERTISING?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our current core offering focuses on organic short-form content. Paid advertising is not
+                            included unless it is explicitly agreed as a separate service.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>HOW DOES AN ENGAGEMENT BEGIN?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We start by understanding your business, current content, objectives and production
+                            requirements. If there's a suitable fit, we'll define the scope, deliverables, timeline and
+                            working process before starting.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>HOW DO WE KNOW IF IT'S WORKING?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We assess relevant indicators such as content performance, qualified enquiries and enquiry
+                            sources where tracking is available. We distinguish between attention metrics and actual
+                            business outcomes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="faq-accordion">
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>WHAT DOES MONK MODE STUDIOS DO?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>We develop strategic short-form content systems, including content strategy, hooks, scripts, video production, publishing direction and performance review.</p>
-                </div>
-            </div>
+    </div>
 
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>IS THIS JUST A VIDEO EDITING SERVICE?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>No. Editing is one part of the process. We focus on the strategic thinking behind the content: what to communicate, why it matters to the audience and what action the content should encourage.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>CAN YOU GUARANTEE LEADS OR SALES?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>We do not promise a fixed number of leads, customers or revenue without a reliable basis for doing so. We build content around clear business objectives, track relevant performance where possible and use the findings to improve future execution.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>DO YOU MANAGE PAID ADVERTISING?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Our current core offering focuses on organic short-form content. Paid advertising is not included unless it is explicitly agreed as a separate service.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>HOW DOES AN ENGAGEMENT BEGIN?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>We start by understanding your business, current content, objectives and production requirements. If there's a suitable fit, we'll define the scope, deliverables, timeline and working process before starting.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    <span>HOW DO WE KNOW IF IT'S WORKING?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>We assess relevant indicators such as content performance, qualified enquiries and enquiry sources where tracking is available. We distinguish between attention metrics and actual business outcomes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
+    <!-- ===== FINAL CTA SECTION ===== -->
+    <!-- No inline font-size on h2 — .cta-heading has its own fluid CSS rule -->
     <section id="contact" class="section-spacing container cta-section">
         <div class="reveal cta-content">
             <p class="label-mono cta-label">Strategy First. Creative With Purpose.</p>
             <h2 class="cta-heading">
                 Your content needs a clearer <span class="text-accent">purpose.</span>
             </h2>
-            <p class="hero-desc cta-desc">Let's understand your business, identify what's missing from your content and build a more intentional way forward.</p>
-            <a href="https://wa.me/8189966157" class="btn-primary">Let's Talk About Your Business &nbsp;→</a>
+            <p class="hero-desc cta-desc">Let's understand your business, identify what's missing from your content and
+                build a more intentional way forward.</p>
+            <a href="https://wa.me/8189966157" class="btn-primary" target="_blank" rel="noopener">Let's Talk About Your
+                Business &nbsp;→</a>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="bg-surface section-spacing footer-section">
         <div class="container footer-grid">
             <div class="footer-brand">
@@ -1926,9 +2098,10 @@
                     <img src="logo.png" alt="Monk Mode Studios">
                 </a>
                 <p class="text-accent footer-tagline">Less Noise. More Intention.</p>
-                <p class="footer-desc">Strategic short-form content designed to turn attention into trust and trust into qualified enquiries.</p>
+                <p class="footer-desc">Strategic short-form content designed to turn attention into trust and trust into
+                    qualified enquiries.</p>
             </div>
-            
+
             <div>
                 <h4 class="label-mono footer-col-title">Navigation</h4>
                 <ul class="footer-links-list">
@@ -1938,27 +2111,28 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            
+
             <div>
                 <h4 class="label-mono footer-col-title">Social</h4>
                 <ul class="footer-links-list">
-                    <li><a href="https://www.instagram.com/monkmode.inc" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/monkmode.inc" target="_blank" rel="noopener">Instagram</a>
+                    </li>
                     <li><a href="https://wa.me/8189966157" target="_blank" rel="noopener">Monk Mode Creatives</a></li>
                 </ul>
             </div>
         </div>
-        
+
         <div class="container footer-bottom">
             <p class="label-mono">&copy; 2026 Monk Mode Studios.</p>
             <p class="label-mono">All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- INTERACTION SCRIPTS -->
+    <!-- ===== INTERACTION SCRIPTS ===== -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Scroll Reveal Observer
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+
+            /* ----- Scroll Reveal ----- */
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1966,119 +2140,105 @@
                         obs.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { root: null, rootMargin: '0px', threshold: 0.1 });
 
-            document.querySelectorAll('.reveal').forEach((el) => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            // Smooth Glass Cursor (Fine pointer only)
+            /* ----- Glass Cursor (fine pointer devices only) ----- */
             const cursor = document.getElementById('cursor');
             if (cursor && window.matchMedia('(pointer: fine)').matches) {
                 let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
 
-                window.addEventListener('mousemove', (e) => {
+                window.addEventListener('mousemove', e => {
                     mouseX = e.clientX;
                     mouseY = e.clientY;
                 }, { passive: true });
 
-                function animateCursor() {
+                (function animateCursor() {
                     cursorX += (mouseX - cursorX) * 0.2;
                     cursorY += (mouseY - cursorY) * 0.2;
                     cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
                     requestAnimationFrame(animateCursor);
-                }
-                animateCursor();
+                })();
 
-                const interactives = document.querySelectorAll('a, button, .video-card, .phase-card, .review-page, .faq-question');
-                interactives.forEach(el => {
+                document.querySelectorAll('a, button, .video-card, .phase-card, .review-page, .faq-question').forEach(el => {
                     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
                     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
                 });
             }
 
-            // Reviews / Testimonials Slider Logic
+            /* ----- Testimonials Slider ----- */
             const reviewSlides = document.querySelectorAll('.review-slide');
             const reviewPages = document.querySelectorAll('.review-page');
 
             reviewPages.forEach(page => {
-                page.addEventListener('click', function() {
+                page.addEventListener('click', function () {
                     const index = parseInt(this.getAttribute('data-index'), 10);
-                    reviewSlides.forEach(slide => slide.classList.remove('active'));
+                    reviewSlides.forEach(s => s.classList.remove('active'));
                     reviewPages.forEach(p => p.classList.remove('active'));
-                    if (reviewSlides[index]) {
-                        reviewSlides[index].classList.add('active');
-                    }
+                    if (reviewSlides[index]) reviewSlides[index].classList.add('active');
                     this.classList.add('active');
                 });
             });
 
-            // Process Section Horizontal Scroll Logic
+            /* ----- Process Section — Horizontal Scroll Logic ----- */
             const processSection = document.querySelector('.process-section');
             const scrollTrack = document.getElementById('scroll-track');
 
-            if (processSection && scrollTrack) {
-                const handleProcessScroll = () => {
-                    // Mobile stacked layout disables horizontal translation
-                    if (window.innerWidth <= 768) {
-                        scrollTrack.style.transform = 'none';
-                        return;
-                    }
+            function handleProcessScroll() {
+                if (!processSection || !scrollTrack) return;
+                if (window.innerWidth <= 768) {
+                    scrollTrack.style.transform = 'none';
+                    return;
+                }
 
-                    const sectionTop = processSection.offsetTop;
-                    const sectionHeight = processSection.offsetHeight;
-                    const windowHeight = window.innerHeight;
-                    const scrollY = window.scrollY;
+                const rect = processSection.getBoundingClientRect();
+                const sectionScrollableHeight = processSection.offsetHeight - window.innerHeight;
 
-                    if (scrollY >= sectionTop && scrollY <= (sectionTop + sectionHeight - windowHeight)) {
-                        const scrollProgress = (scrollY - sectionTop) / (sectionHeight - windowHeight);
-                        const maxScroll = Math.max(0, scrollTrack.scrollWidth - window.innerWidth + 120);
-                        scrollTrack.style.transform = `translateX(-${scrollProgress * maxScroll}px)`;
-                    } else if (scrollY < sectionTop) {
-                        scrollTrack.style.transform = 'translateX(0px)';
-                    } else {
-                        const maxScroll = Math.max(0, scrollTrack.scrollWidth - window.innerWidth + 120);
-                        scrollTrack.style.transform = `translateX(-${maxScroll}px)`;
-                    }
-                };
-
-                window.addEventListener('scroll', handleProcessScroll, { passive: true });
-                window.addEventListener('resize', handleProcessScroll);
+                if (rect.top <= 0 && Math.abs(rect.top) <= sectionScrollableHeight) {
+                    const progress = Math.abs(rect.top) / sectionScrollableHeight;
+                    const maxTranslate = scrollTrack.scrollWidth - window.innerWidth + 120;
+                    scrollTrack.style.transform = `translate3d(-${progress * maxTranslate}px, 0, 0)`;
+                } else if (rect.top > 0) {
+                    scrollTrack.style.transform = 'translate3d(0px, 0, 0)';
+                } else {
+                    const maxTranslate = scrollTrack.scrollWidth - window.innerWidth + 120;
+                    scrollTrack.style.transform = `translate3d(-${maxTranslate}px, 0, 0)`;
+                }
             }
 
-            // FAQ Accordion Logic
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const questionButton = item.querySelector('.faq-question');
-                const answer = item.querySelector('.faq-answer');
+            window.addEventListener('scroll', handleProcessScroll, { passive: true });
+            window.addEventListener('resize', handleProcessScroll);
+            handleProcessScroll();
 
-                if (questionButton && answer) {
-                    questionButton.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-                        faqItems.forEach(otherItem => {
-                            otherItem.classList.remove('active');
-                            const otherAnswer = otherItem.querySelector('.faq-answer');
-                            if (otherAnswer) otherAnswer.style.maxHeight = null;
-                        });
-                        if (!isActive) {
-                            item.classList.add('active');
-                            answer.style.maxHeight = answer.scrollHeight + "px";
-                        }
+            /* ----- FAQ Accordion ----- */
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const btn = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                if (!btn || !answer) return;
+
+                btn.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(other => {
+                        other.classList.remove('active');
+                        const a = other.querySelector('.faq-answer');
+                        if (a) a.style.maxHeight = null;
                     });
-                }
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
             });
 
-            // Autoplay Videos with Silent Catch
-            const videos = document.querySelectorAll('.reel-video');
-            videos.forEach(video => {
+            /* ----- Autoplay Videos ----- */
+            document.querySelectorAll('.reel-video').forEach(video => {
                 video.muted = true;
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
-                }
+                const p = video.play();
+                if (p) p.catch(() => { });
             });
         });
     </script>
 </body>
-</html>
+
 </html>
